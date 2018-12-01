@@ -1,19 +1,19 @@
 from PIL import Image
 
-im = Image.open("tophat.jpg")
+im = Image.open("images/tower.jpg")
 
 ASCII = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
 
 width, height = im.size
 
-# rsize = round(width / 2), round(height / 2)
+rsize = round(width / 2), round(height / 2)
 
-# print (rsize)
+print (rsize)
 
-# im = im.resize(rsize, Image.ANTIALIAS)
+im = im.resize(rsize, Image.ANTIALIAS)
 
-# width, height = im.size
+width, height = im.size
 
 pixels = [[0 for x in range (height)] for y in range (width)]
 
@@ -22,7 +22,7 @@ for x in range (0, width):
         xy = (x, y)
         pixels[x][y] = im.getpixel(xy)
 
-ascii_art = ""
+output = ""
 
 for x in range (0, len(pixels)):
     for y in range (0, len(pixels[x])):
@@ -46,7 +46,7 @@ for x in range (0, len(pixels)):
 
 for y in range (0, height):
     for x in range (0, width):
-        ascii_art += pixels[x][y]
-    ascii_art += "\n"
+        output += pixels[x][y]
+    output += "\n"
 
-print(ascii_art)
+print(output)
