@@ -26,6 +26,8 @@ for x in range (0, width):
 
 output = ""
 
+#main algorithm for getting each pixel, extracting brightness value
+#and adding the value to the assigned pixel location in the 2D list
 for x in range (0, len(pixels)):
     for y in range (0, len(pixels[x])):
         pixel = pixels[x][y]
@@ -52,6 +54,7 @@ for x in range (0, len(pixels)):
         ascii_char = ASCII[char_pos]
         pixels[x][y] = ascii_char + ascii_char + ascii_char
 
+#goes through the whole 2-dimensional list and appends it to the output string
 for y in range (0, height):
     for x in range (0, width):
         output += pixels[x][y]
