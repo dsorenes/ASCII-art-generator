@@ -1,9 +1,11 @@
 from PIL import Image
+import sys
 
-im = Image.open("images/tower.jpg")
+input_image = sys.argv[1]
+
+im = Image.open(input_image)
 
 ASCII = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-
 
 width, height = im.size
 
@@ -31,7 +33,14 @@ for x in range (0, len(pixels)):
         green = pixel[1]
         blue = pixel[2]
 
-        brightness = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue)
+        if (sys.argv[2] == 'lum'):
+            brightness = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue)
+        elif (sys.argv[2] == 'avg'):
+            brightness = (red + green + blue) / 3
+        elif (sys.argv[2] == 'minmax'):
+            brightness = ((max(red, green, blue)) + min(red, green, blue)) / 2
+        else:
+            brightness = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue)
 
         pixels[x][y] = round(brightness)
 
@@ -42,7 +51,6 @@ for x in range (0, len(pixels)):
 
         ascii_char = ASCII[char_pos]
         pixels[x][y] = ascii_char + ascii_char + ascii_char
-
 
 for y in range (0, height):
     for x in range (0, width):
